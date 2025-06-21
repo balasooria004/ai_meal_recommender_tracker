@@ -355,8 +355,13 @@
             {{ totals.calories|floatformat:0 }} /
             {{daily_targets.calories|default:"0"|floatformat:0 }}
           </div>
-          <div class="nutrient-remaining">
-            {{remaining.calories|floatformat:0 }} remaining
+          <div
+            class="nutrient-remaining"
+            style="color: {% if remaining.calories < 0 %}#dc3545{% else %}#28a745{% endif %};"
+          >
+            {% if remaining.calories < 0 %}
+            {{remaining.calories|floatformat:0|slice:"1:" }} exceeded {% else %}
+            {{ remaining.calories|floatformat:0 }} remaining {% endif %}
           </div>
         </div>
 
@@ -366,8 +371,13 @@
             {{ totals.protein|floatformat:1 }}g /
             {{daily_targets.protein|default:"0"|floatformat:1 }}g
           </div>
-          <div class="nutrient-remaining">
-            {{remaining.protein|floatformat:1 }}g remaining
+          <div
+            class="nutrient-remaining"
+            style="color: {% if remaining.protein < 0 %}#dc3545{% else %}#28a745{% endif %};"
+          >
+            {% if remaining.protein < 0 %}
+            {{remaining.protein|floatformat:1|slice:"1:" }}g exceeded {% else %}
+            {{ remaining.protein|floatformat:1 }}g remaining {% endif %}
           </div>
         </div>
 
@@ -377,8 +387,13 @@
             {{ totals.fat|floatformat:1 }}g /
             {{daily_targets.fat|default:"0"|floatformat:1 }}g
           </div>
-          <div class="nutrient-remaining">
-            {{remaining.fat|floatformat:1 }}g remaining
+          <div
+            class="nutrient-remaining"
+            style="color: {% if remaining.fat < 0 %}#dc3545{% else %}#28a745{% endif %};"
+          >
+            {% if remaining.fat < 0 %}
+            {{remaining.fat|floatformat:1|slice:"1:"}}g exceeded {% else %}
+            {{remaining.fat|floatformat:1 }}g remaining {% endif %}
           </div>
         </div>
 
@@ -388,8 +403,13 @@
             {{ totals.carbs|floatformat:1 }}g /
             {{daily_targets.carbs|default:"0"|floatformat:1 }}g
           </div>
-          <div class="nutrient-remaining">
-            {{remaining.carbs|floatformat:1 }}g remaining
+          <div
+            class="nutrient-remaining"
+            style="color: {% if remaining.carbs < 0 %}#dc3545{% else %}#28a745{% endif %};"
+          >
+            {% if remaining.carbs < 0 %}
+            {{remaining.carbs|floatformat:1|slice:"1:" }}g exceeded {% else %}
+            {{remaining.carbs|floatformat:1 }}g remaining {% endif %}
           </div>
         </div>
 
@@ -399,8 +419,13 @@
             {{ totals.fiber|floatformat:1 }}g /
             {{daily_targets.fiber|default:"0"|floatformat:1 }}g
           </div>
-          <div class="nutrient-remaining">
-            {{remaining.fiber|floatformat:1 }}g remaining
+          <div
+            class="nutrient-remaining"
+            style="color: {% if remaining.fiber < 0 %}#dc3545{% else %}#28a745{% endif %};"
+          >
+            {% if remaining.fiber < 0 %}
+            {{remaining.fiber|floatformat:1|slice:"1:" }}g exceeded {% else %}
+            {{remaining.fiber|floatformat:1 }}g remaining {% endif %}
           </div>
         </div>
       </div>
@@ -417,7 +442,7 @@
         <h3>{{ meal_type }}</h3>
         <div class="meal-calories">
           {{meal_totals|get_item:meal_type|default:"0"|floatformat:0 }} /
-          {{meal_targets|get_item:meal_type|default:"0"|floatformat:0 }} cal
+          {{meal_targets|get_item:meal_type|default:"0"|floatformat:0 }} kcal
         </div>
       </div>
 
@@ -431,7 +456,7 @@
               {{meal.protein|floatformat:1 }}g | F: {{ meal.fat|floatformat:1}}g
               | C: {{ meal.carbs|floatformat:1 }}g | Fiber:
               {{meal.fiber|floatformat:1 }}g {% if meal.timestamp %} |
-              {{meal.timestamp }}{% endif %}
+              <!-- {{meal.timestamp }}{% endif %} -->
             </div>
           </div>
 
