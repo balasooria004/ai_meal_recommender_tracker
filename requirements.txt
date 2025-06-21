@@ -6,3 +6,4 @@ django
 openai
 google-generativeai
 dotenv
+dj_database_url
